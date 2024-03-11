@@ -5,9 +5,6 @@ on:
 
   pull_request:
 
-env:
-  GITHUB_REGISTRY: ghcr.io
-
 jobs:
   build-image:
     name: Build and push image 
@@ -15,10 +12,30 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
       - name: Build and push image
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
-          docker build -t $GITHUB_REGISTRY/starodubcevdv/c2py:latest -t $GITHUB_REGISTRY/starodubcevdv/c2py:${{ github.sha }} .
-          docker push $GITHUB_REGISTRY/starodubcevdv/c2py:latest
-          docker push $GITHUB_REGISTRY/starodubcevdv/c2py:${{ github.sha }}
+          docker build -t ghcr.io/starodubcevdv/c2py:latest -t ghcr.io/starodubcevdv/c2py:${{ github.sha }} .
+          docker push ghcr.io/starodubcevdv/c2py:latest
+          docker push ghcr.io/starodubcevdv/c2py:${{ github.sha }}
+  
+  run-unit-tests:
+    needs: build-image
+    name: Run unit tests
+    runs-on: ubuntu-22.04
+    container:
+      image: ghcr.io/starodubcevdv/c2py:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run unit tests
+        run: |
+          chmod +x ./scripts/run_unit_tests.sh
+          ./scripts/run_unit_tests.sh
+
+
