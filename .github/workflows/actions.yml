@@ -1,34 +1,24 @@
-name: 'Testing'
+name: 'Run unit-tests'
 
-on: push
+on:
+  push:
+
+  pull_request:
+
+env:
+  GITHUB_REGISTRY: ghcr.io
 
 jobs:
-
-  push_to_registry:
-    name: Push Docker image to Docker Hub
-    runs-on: ubuntu-latest
+  build-image:
+    name: Build and push image 
+    if: github.event_name == 'push'
+    runs-on: ubuntu-22.04
     steps:
-      - name: Check out the repo
-        uses: actions/checkout@v3
-      
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.DOCKER_TOKEN }}
-      
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@v4
-        with:
-          images: StarodubcevDV/C2Py
-      
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v4.1.1
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+      - name: checkout
+        uses: actions/checkout@v1
+      - name: Build and push image
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+          docker build -t $GITHUB_REGISTRY/starodubcevdv/c2py:latest -t $GITHUB_REGISTRY/starodubcevdv/c2py:${{ github.sha }} .
+          docker push $GITHUB_REGISTRY/starodubcevdv/c2py:latest
+          docker push $GITHUB_REGISTRY/starodubcevdv/c2py:${{ github.sha }}
