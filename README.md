@@ -1,6 +1,6 @@
 # C2Py
 Python library which provide [C2PA standard](https://c2pa.org/) functionality.   
-It will the open-source library for python projects which provide signature of media content.   
+It is the open-source library for python projects which provide signature of media content.   
 
 
 ## Details of development:
