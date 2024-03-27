@@ -31,4 +31,4 @@ def test_check_length():
 
     test_description_box = DescriptionBox()
 
-    assert test_description_box.get_length() == 12
+    assert test_description_box.get_length() == 8

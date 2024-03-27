@@ -7,7 +7,7 @@ class Box():
 
     def __init__(self, box_type):
         self.t_box = box_type
-        self.l_box = len(self.t_box) + 4    # Size of box_type (4 bytes) + self size (4 bytes)
+        self.l_box = len(bytes.fromhex(self.t_box)) + 4    # Size of box_type (4 bytes) + self size (4 bytes)
 
     def get_length(self):
         return self.l_box
