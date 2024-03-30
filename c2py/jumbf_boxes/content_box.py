@@ -8,6 +8,6 @@ class ContentBox(Box):
     payload = b''
 
     def __init__(self, payload = b''):
-        super().__init__('jumb'.encode('utf-8').hex())
         self.payload = payload
+        super().__init__('jumb'.encode('utf-8').hex())
     
