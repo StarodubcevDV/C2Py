@@ -10,8 +10,14 @@ class DescriptionBox(Box):
     toggle = ''
 
     def __init__(self, content_type = jumbf_content_types["json"], label=''):
-        super().__init__('jumd'.encode('utf-8').hex())
         self.label = label
         self.content_type = content_type
         self.toggle = 3
+
+        self.payload = self.content_type + \
+                        self.toggle.to_bytes(1, 'big') + \
+                        bytes.fromhex(self.label.encode('utf-8').hex()) + \
+                        b'\x00'
+        
+        super().__init__('jumd'.encode('utf-8').hex())
     
