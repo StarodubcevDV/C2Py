@@ -27,7 +27,8 @@ class SuperBox(Box):
         serialized_content_boxes = b''
 
         for content_box in self.content_boxes:
-            serialized_content_boxes += content_box.serialize()
+            if content_box != None:
+                serialized_content_boxes += content_box.serialize()
 
         return serialized_content_boxes
     
