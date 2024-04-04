@@ -20,6 +20,7 @@ class SuperBox(Box):
     
     def add_content_box(self, content_box):
         self.content_boxes.append(content_box)
+        self.sync_payload()
 
 
     def serialize_content_boxes(self):
