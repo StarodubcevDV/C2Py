@@ -1,5 +1,6 @@
 # Base jumbf box class
 
+
 class Box():
 
     l_box = 0       # Length of box in bytess

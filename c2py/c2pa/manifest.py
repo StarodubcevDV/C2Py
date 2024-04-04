@@ -1,6 +1,6 @@
 
 from c2py.jumbf_boxes.super_box import SuperBox
-from c2py.jumbf_boxes.jumbf_content_types import jumbf_content_types
+from c2py.utils.content_types import c2pa_content_types
 
 
 class Manifest(SuperBox):
@@ -16,7 +16,7 @@ class Manifest(SuperBox):
         self.assertion_store = assertion_store
         content_boxes = [self.claim, self.claim_signature, self.assertion_store]
 
-        super().__init__(content_type=jumbf_content_types["json"], content_boxes=content_boxes)
+        super().__init__(content_type=c2pa_content_types["default_manifest"], content_boxes=content_boxes)
 
 
     def get_content_type(self):

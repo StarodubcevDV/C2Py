@@ -2,7 +2,7 @@ import pytest
 
 from c2py.jumbf_boxes.super_box import SuperBox
 from c2py.jumbf_boxes.content_box import ContentBox
-from c2py.jumbf_boxes.jumbf_content_types import jumbf_content_types
+from c2py.utils.content_types import jumbf_content_types
 
 
 def test_create_super_box():

@@ -1,7 +1,8 @@
 # Description jumbf box class
 
 from c2py.jumbf_boxes.box import Box
-from c2py.jumbf_boxes.jumbf_content_types import jumbf_content_types
+from c2py.utils.content_types import jumbf_content_types
+
 
 class DescriptionBox(Box):
 
