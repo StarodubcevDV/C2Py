@@ -21,4 +21,11 @@ class DescriptionBox(Box):
                         b'\x00'
         
         super().__init__('jumd'.encode('utf-8').hex())
+
+    
+    def get_label(self):
+        return self.label
+    
+    def get_content_type(self):
+        return self.content_type
     

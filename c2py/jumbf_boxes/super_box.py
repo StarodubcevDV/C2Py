@@ -37,3 +37,10 @@ class SuperBox(Box):
         self.payload = self.description_box.serialize() + self.serialize_content_boxes()
         super().__init__('jumb'.encode('utf-8').hex())
 
+    
+    def get_label(self):
+        return self.description_box.get_label()
+    
+    def get_content_type(self):
+        return self.description_box.get_content_type()
+
