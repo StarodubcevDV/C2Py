@@ -14,7 +14,11 @@ class Manifest(SuperBox):
         self.claim = claim
         self.claim_signature = claim_signature
         self.assertion_store = assertion_store
-        content_boxes = [self.claim, self.claim_signature, self.assertion_store]
 
-        super().__init__(content_type=c2pa_content_types["default_manifest"], content_boxes=content_boxes)
+        super().__init__(content_type=c2pa_content_types["default_manifest"])
+
+    
+    def set_claim(self, claim):
+        self.claim = claim
+        self.add_content_box(self.claim)
 

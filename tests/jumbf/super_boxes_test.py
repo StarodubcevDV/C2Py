@@ -33,11 +33,11 @@ def test_create_super_box_with_label():
     assert test_super_box.description_box.label == "c2pa.Test"
 
 
-def test_create_super_box_with_content_boxes():
+def test_create_super_box_without_content_boxes():
 
     test_super_box = SuperBox()
 
-    assert len(test_super_box.content_boxes) == 0 
+    assert len(test_super_box.content_boxes) == 0
 
 
 def test_serialize_super_box():

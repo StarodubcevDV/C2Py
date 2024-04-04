@@ -11,6 +11,7 @@ def test_create_manifest():
     assert test_manifest.claim == None
     assert test_manifest.claim_signature == None
     assert test_manifest.assertion_store == None
+    assert len(test_manifest.content_boxes) == 0
 
 
 def test_create_manifest_with_jumb_base_type():
@@ -21,3 +22,11 @@ def test_create_manifest_with_jumb_base_type():
     assert test_manifest.get_content_type() == c2pa_content_types["default_manifest"]
     assert test_manifest.description_box.label == '' # TODO: find out what label should be setted
 
+
+def test_create_manifest_with_creation_content_boxes():
+
+    test_manifest = Manifest()
+
+    test_manifest.set_claim(None)
+    
+    assert len(test_manifest.content_boxes) != 0

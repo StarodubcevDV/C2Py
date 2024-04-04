@@ -10,7 +10,7 @@ class SuperBox(Box):
     description_box = None
     content_boxes = []
 
-    def __init__(self, content_boxes = [], content_type = jumbf_content_types["json"], label=''):
+    def __init__(self, content_type=jumbf_content_types["json"], label='', content_boxes=[]):
         self.description_box = DescriptionBox(content_type=content_type, label=label)
         self.content_boxes = content_boxes
 
@@ -24,7 +24,6 @@ class SuperBox(Box):
 
 
     def serialize_content_boxes(self):
-
         serialized_content_boxes = b''
 
         for content_box in self.content_boxes:

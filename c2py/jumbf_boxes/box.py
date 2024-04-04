@@ -24,3 +24,4 @@ class Box():
         t_box = bytes.fromhex(self.t_box)
         l_box = self.l_box.to_bytes(4, 'big')
         return t_box + l_box + self.payload
+
