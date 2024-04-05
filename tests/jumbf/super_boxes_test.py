@@ -64,6 +64,7 @@ def test_serialize_super_box_with_content_box():
 
     test_content_box = ContentBox(payload=b'\x00\x00')
     test_super_box.add_content_box(test_content_box)
+    test_super_box.sync_payload()
 
     test_serialized_data = b'\x6a\x75\x6d\x62' + \
                             b'\x00\x00\x00\x31' + \
