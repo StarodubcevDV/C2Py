@@ -1,7 +1,7 @@
 import pytest
 
 from c2py.jumbf_boxes.description_box import DescriptionBox
-from c2py.jumbf_boxes.jumbf_content_types import jumbf_content_types
+from c2py.utils.content_types import jumbf_content_types
 
 
 def test_create_description_box():

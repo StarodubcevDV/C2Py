@@ -2,7 +2,7 @@ import pytest
 
 from c2py.jumbf_boxes.super_box import SuperBox
 from c2py.jumbf_boxes.content_box import ContentBox
-from c2py.jumbf_boxes.jumbf_content_types import jumbf_content_types
+from c2py.utils.content_types import jumbf_content_types
 
 
 def test_create_super_box():
@@ -33,11 +33,11 @@ def test_create_super_box_with_label():
     assert test_super_box.description_box.label == "c2pa.Test"
 
 
-def test_create_super_box_with_content_boxes():
+def test_create_super_box_without_content_boxes():
 
     test_super_box = SuperBox()
 
-    assert len(test_super_box.content_boxes) == 0 
+    assert len(test_super_box.content_boxes) == 0
 
 
 def test_serialize_super_box():
@@ -64,7 +64,6 @@ def test_serialize_super_box_with_content_box():
 
     test_content_box = ContentBox(payload=b'\x00\x00')
     test_super_box.add_content_box(test_content_box)
-
     test_super_box.sync_payload()
 
     test_serialized_data = b'\x6a\x75\x6d\x62' + \

@@ -1,12 +1,10 @@
 # Base jumbf box class
 
+
 class Box():
 
-    l_box = 0       # Length of box in bytess
-    t_box = ''      # Box type in bytes
-    payload = b''   # Box payload
-
-    def __init__(self, box_type):
+    def __init__(self, box_type, payload = b''):
+        self.payload = payload  # Box payload
         self.t_box = box_type
         self.l_box = len(bytes.fromhex(self.t_box)) + 4 + len(self.payload)    # Size of box_type (4 bytes) + self size (4 bytes)
 
@@ -23,3 +21,4 @@ class Box():
         t_box = bytes.fromhex(self.t_box)
         l_box = self.l_box.to_bytes(4, 'big')
         return t_box + l_box + self.payload
+
