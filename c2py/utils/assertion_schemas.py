@@ -1,5 +1,6 @@
 
 import json
+import cbor2
 import enum
 from c2py.utils.content_types import jumbf_content_types
 
@@ -13,9 +14,11 @@ class C2PA_AssertionTypes(enum.Enum):
 def json_to_bytes(json_object):
     return json.dumps(json_object, separators=(',', ':')).encode('utf-8')
 
+def cbor_to_bytes(json_object):
+    return cbor2.dumps(json_object)
+
 
 def get_assertion_content_type(assertion_type):
-    
     if assertion_type == C2PA_AssertionTypes.creative_work:
         return jumbf_content_types['json']
     elif assertion_type == C2PA_AssertionTypes.data_hash:
@@ -36,6 +39,4 @@ def get_assertion_label(assertion_type):
         return 'c2pa.thumbnail.claim.jpeg'
     else:
         return ''
-
-
 
