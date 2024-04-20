@@ -74,7 +74,7 @@ def test_serialize_super_box_with_content_box():
                             b'\x03' + \
                             b'\x73\x75\x70\x65\x72' + \
                             b'\x00' + \
-                            b'\x6a\x75\x6d\x62' + \
+                            b'\x6a\x73\x6f\x6e' + \
                             b'\x00\x00\x00\x0A' + \
                             b'\x00\x00'
 
