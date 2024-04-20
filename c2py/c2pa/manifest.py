@@ -17,3 +17,13 @@ class Manifest(SuperBox):
         self.claim = claim
         self.add_content_box(self.claim)
 
+
+    def set_claim_signature(self, claim_signature):
+        self.claim_signature = claim_signature
+        self.add_content_box(self.claim_signature)
+
+
+    def set_assertion_store(self, assertion_store):
+        self.assertion_store = assertion_store
+        self.add_content_box(self.assertion_store)
+
