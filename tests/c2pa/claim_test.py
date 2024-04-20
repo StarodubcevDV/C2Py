@@ -65,5 +65,5 @@ def test_create_claim_with_jumbf_type():
 
     assert test_claim.t_box == 'jumb'.encode('utf-8').hex()
     assert test_claim.get_content_type() == c2pa_content_types["claim"]
-    assert test_claim.content_boxes[0].get_type() == jumbf_content_types['cbor']
+    assert test_claim.content_boxes[0].get_type() == 'cbor'.encode('utf-8').hex()
     

@@ -8,7 +8,7 @@ def test_create_content_box():
 
     test_content_box = ContentBox()
 
-    assert test_content_box.t_box == 'jumb'.encode('utf-8').hex()
+    assert test_content_box.t_box == 'json'.encode('utf-8').hex()
 
 
 def test_create_content_box_with_payload():
@@ -22,7 +22,7 @@ def test_serialize_content_box():
 
     test_content_box = ContentBox(payload=b'\x00\x00')
 
-    test_content_box_serialized_data = b'\x6a\x75\x6d\x62' + \
+    test_content_box_serialized_data = b'\x6a\x73\x6f\x6e' + \
                                         b'\x00\x00\x00\x0A' + \
                                         b'\x00\x00'
 

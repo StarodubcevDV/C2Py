@@ -15,9 +15,9 @@ class Claim(SuperBox):
         self.claim_signature_label = f'self#jumbf=c2pa/{self.manifest_label}/c2pa.signature'
 
         content_boxes = []
-        if assertion_store != None:
-            self.assertion_store = assertion_store
-            content_box = ContentBox(payload=self.generate_claim_schema())
+        self.assertion_store = assertion_store
+        if self.assertion_store != None:
+            content_box = ContentBox(box_type='cbor'.encode('utf-8').hex(), payload=self.generate_claim_schema())
             content_boxes.append(content_box)
 
         super().__init__(label='c2pa.claim', content_type=c2pa_content_types["claim"], content_boxes=content_boxes)
