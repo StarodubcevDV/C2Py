@@ -44,10 +44,10 @@ def test_serialize_super_box():
 
     test_super_box = SuperBox(label='super')
 
-    test_serialized_data = b'\x6a\x75\x6d\x62' + \
-                            b'\x00\x00\x00\x27' + \
-                            b'\x6a\x75\x6d\x64' + \
+    test_serialized_data = b'\x00\x00\x00\x27' + \
+                            b'\x6a\x75\x6d\x62' + \
                             b'\x00\x00\x00\x1f' + \
+                            b'\x6a\x75\x6d\x64' + \
                             b'\x6a\x73\x6f\x6e\x00\x11\x00\x10\x80\x00\x00\xaa\x00\x38\x9b\x71' + \
                             b'\x03' + \
                             b'\x73\x75\x70\x65\x72' + \
@@ -66,16 +66,16 @@ def test_serialize_super_box_with_content_box():
     test_super_box.add_content_box(test_content_box)
     test_super_box.sync_payload()
 
-    test_serialized_data = b'\x6a\x75\x6d\x62' + \
-                            b'\x00\x00\x00\x31' + \
-                            b'\x6a\x75\x6d\x64' + \
+    test_serialized_data = b'\x00\x00\x00\x31' + \
+                            b'\x6a\x75\x6d\x62' + \
                             b'\x00\x00\x00\x1f' + \
+                            b'\x6a\x75\x6d\x64' + \
                             b'\x6a\x73\x6f\x6e\x00\x11\x00\x10\x80\x00\x00\xaa\x00\x38\x9b\x71' + \
                             b'\x03' + \
                             b'\x73\x75\x70\x65\x72' + \
                             b'\x00' + \
-                            b'\x6a\x73\x6f\x6e' + \
                             b'\x00\x00\x00\x0A' + \
+                            b'\x6a\x73\x6f\x6e' + \
                             b'\x00\x00'
 
     assert test_super_box.serialize() == test_serialized_data
