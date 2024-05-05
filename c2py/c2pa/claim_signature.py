@@ -34,17 +34,15 @@ class ClaimSignature(SuperBox):
     def create_signature(self):
 
         # -37 stands for PS256 (RSASSA-PSS using SHA-256 and MGF1 with SHA-256)
-        phdr = cbor2.dumps({1: -37})
+        phdr = self.generate_protected_header()
 
-        cert = x509.load_pem_x509_certificate(self.certificate, default_backend())
-        certificates_info = {
-            'x5chain': cert.public_bytes(Encoding.DER),
+        unprotected_header = {
             'temp_signing_time': str(datetime.datetime.now(pytz.utc)),
         }
 
         private_key = serialization.load_pem_private_key(self.private_key, password=None)
-        sig_structure_data = cbor2.dumps(['Signature1', phdr, b'' b'', self.claim.serialize()])
-        sig_structure_data = b'\x84' + sig_structure_data[1:]
+        sig_structure_data = cbor2.dumps(cbor2.CBORTag(84, ['Signature1', phdr, b'', self.claim.serialize()]))
+
         signature = private_key.sign(
             sig_structure_data,
             padding.PSS(
@@ -55,11 +53,25 @@ class ClaimSignature(SuperBox):
         )
 
         payload = None
-        message = [phdr, certificates_info, payload, signature]
+        message =  [phdr, unprotected_header, payload, signature]
         tag = cbor2.CBORTag(18, message)
         cose_tag = cbor2.dumps(tag)
 
         pad = b'\x00' * (4096 - len(cose_tag))
         payload = cose_tag + pad
+
         return payload
+    
+    
+    def generate_protected_header(self):
+        certs_array = []
         
+        certs = x509.load_pem_x509_certificates(self.certificate)
+        
+        for cert in certs:
+            certs_array.append(cert.public_bytes(Encoding.DER))
+            
+        protected_header_map = {1: -37,
+                                33: certs_array}
+            
+        return cbor2.dumps(protected_header_map)
