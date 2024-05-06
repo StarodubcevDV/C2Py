@@ -13,7 +13,7 @@ class DescriptionBox(Box):
 
         payload = self.content_type + \
                         self.toggle.to_bytes(1, 'big') + \
-                        bytes.fromhex(self.label.encode('utf-8').hex()) + \
+                        self.label.encode('utf-8') + \
                         b'\x00'
         
         super().__init__('jumd'.encode('utf-8').hex(), payload=payload)

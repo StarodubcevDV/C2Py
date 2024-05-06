@@ -22,8 +22,8 @@ def test_serialize_content_box():
 
     test_content_box = ContentBox(payload=b'\x00\x00')
 
-    test_content_box_serialized_data = b'\x6a\x73\x6f\x6e' + \
-                                        b'\x00\x00\x00\x0A' + \
+    test_content_box_serialized_data = b'\x00\x00\x00\x0A' + \
+                                        b'\x6a\x73\x6f\x6e' + \
                                         b'\x00\x00'
 
     assert test_content_box.serialize() == test_content_box_serialized_data

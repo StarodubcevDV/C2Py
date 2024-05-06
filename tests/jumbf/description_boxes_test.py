@@ -43,8 +43,8 @@ def test_description_box_serialize():
 
     test_description_box = DescriptionBox(label="a")
 
-    test_serialized_data = b'\x6a\x75\x6d\x64' + \
-                            b'\x00\x00\x00\x1b' + \
+    test_serialized_data = b'\x00\x00\x00\x1b' + \
+                            b'\x6a\x75\x6d\x64' + \
                             b'\x6a\x73\x6f\x6e\x00\x11\x00\x10\x80\x00\x00\xaa\x00\x38\x9b\x71' + \
                             b'\x03' + \
                             b'\x61' + \

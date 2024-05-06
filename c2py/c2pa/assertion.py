@@ -10,7 +10,8 @@ class Assertion(SuperBox):
     def __init__(self, assertion_type, schema):
         self.type = assertion_type
         self.schema = schema
-        content_box = ContentBox(payload=self.get_payload_from_schema())
+        self.payload = self.get_payload_from_schema()
+        content_box = ContentBox(payload=self.payload)
 
         super().__init__(content_type=get_assertion_content_type(assertion_type),
                          label=get_assertion_label(assertion_type),
@@ -26,3 +27,7 @@ class Assertion(SuperBox):
             return self.schema['payload']
         else:
             return b''
+        
+        
+    def get_data_for_signing(self):
+        return self.description_box.serialize() + self.serialize_content_boxes()

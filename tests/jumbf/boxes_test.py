@@ -33,7 +33,7 @@ def test_get_box_type():
 
 def test_serialize_box():
 
-    expected_serialized_data = b'\x6a\x75\x6d\x62\x00\x00\x00\x08'
+    expected_serialized_data = b'\x00\x00\x00\x08\x6a\x75\x6d\x62'
 
     test_box = Box('jumb'.encode('utf-8').hex())
 
