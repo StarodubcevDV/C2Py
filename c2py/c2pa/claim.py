@@ -33,7 +33,7 @@ class Claim(SuperBox):
         claim_schema["signature"] = f"self#jumbf=c2pa/{self.manifest_label}/c2pa.signature"
         claim_schema["assertions"] = [
             {
-                "url": f"self#jumbf=c2pa.assertions/{get_assertion_label(assertion.type)}",
+                "url": f"self#jumbf=/c2pa/{self.manifest_label}/c2pa.assertions/{get_assertion_label(assertion.type)}",
                 "alg": "sha256",
                 "hash": hashlib.sha256(assertion.get_data_for_signing()).digest()
             } for assertion in self.assertion_store.assertions

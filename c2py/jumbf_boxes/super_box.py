@@ -22,7 +22,7 @@ class SuperBox(Box):
 
     def serialize_content_boxes(self):
         serialized_content_boxes = b''
-
+        
         for content_box in self.content_boxes:
             if content_box != None:
                 serialized_content_boxes += content_box.serialize()
