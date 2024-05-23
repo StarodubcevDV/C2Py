@@ -9,7 +9,7 @@ class AssertionStore(SuperBox):
 
     def __init__(self, assertions=None):
         self.assertions = [] if assertions == None else assertions
-        super().__init__(content_type=c2pa_content_types['assertions'], label='c2pa.assertions', content_boxes=assertions)
+        super().__init__(content_type=c2pa_content_types['assertions'], label='c2pa.assertions', content_boxes=self.assertions)
         
     
     def get_assertions(self):
@@ -20,6 +20,6 @@ class AssertionStore(SuperBox):
         for assertion_id in range(len(self.assertions)):
             if self.assertions[assertion_id].type == C2PA_AssertionTypes.data_hash:
                 self.assertions[assertion_id].set_hash_data_length(length)
-                print(f'changed length: {self.assertions[assertion_id].schema['exclusions'][0]['length']}')
+                # print(f'changed length: {self.assertions[assertion_id].schema['exclusions'][0]['length']}')
         
-        self.sync_payload()
+        super().__init__(content_type=c2pa_content_types['assertions'], label='c2pa.assertions', content_boxes=self.assertions)

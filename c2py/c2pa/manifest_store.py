@@ -19,7 +19,8 @@ class ManifestStore(SuperBox):
     
     def set_hash_data_length(self):
         for manifest_id in range(len(self.manifests)):
-            self.manifests[manifest_id].assertion_store.set_hash_data_length(self.get_serialized_length())
+            print(f'OLOLO manifest id: {manifest_id}')
+            self.manifests[manifest_id].set_hash_data_length(self.get_serialized_length())
             # print(f'changed length: {self.manifests[manifest_id].assertion_store.assertions[1].schema['exclusions'][0]['length']}')                   
         self.sync_payload()
         

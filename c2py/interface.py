@@ -33,6 +33,9 @@ def C2Py_GenerateManifest(assertions: list, private_key: str, certificate_chain:
  
 # Function for emplacing manifest to source data
 def C2Py_EmplaceManifest(format_type: C2PA_ContentTypes, content_bytes: bytes, c2pa_offset: int, manifest: ManifestStore) -> bytes:
+    
+    manifest.set_hash_data_length()
+    
     if format_type == C2PA_ContentTypes.jpg:
         c2pa_jpg_app11_storage = JpgSegmentApp11Storage(app11_segment_box_length=manifest.get_length(),
                                                     app11_segment_box_type=manifest.get_type(),

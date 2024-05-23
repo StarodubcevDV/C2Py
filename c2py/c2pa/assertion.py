@@ -11,10 +11,11 @@ class Assertion(SuperBox):
         self.type = assertion_type
         self.schema = schema
         self.payload = self.get_payload_from_schema()
-        content_box = ContentBox(box_type=get_assertion_content_box_type(assertion_type), payload=self.payload)
+        
+        content_box = ContentBox(box_type=get_assertion_content_box_type(self.type), payload=self.payload)
 
-        super().__init__(content_type=get_assertion_content_type(assertion_type),
-                         label=get_assertion_label(assertion_type),
+        super().__init__(content_type=get_assertion_content_type(self.type),
+                         label=get_assertion_label(self.type),
                          content_boxes=[content_box])
 
 
@@ -40,6 +41,11 @@ class Assertion(SuperBox):
                     self.schema['exclusions'][exclusion_id]['length'] = length
                     print('Changed length')
         
-        self.sync_payload()
+        self.payload = self.get_payload_from_schema()
+        content_box = ContentBox(box_type=get_assertion_content_box_type(self.type), payload=self.payload)
+
+        super().__init__(content_type=get_assertion_content_type(self.type),
+                         label=get_assertion_label(self.type),
+                         content_boxes=[content_box])
                         
     

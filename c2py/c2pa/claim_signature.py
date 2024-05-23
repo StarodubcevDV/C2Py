@@ -22,11 +22,24 @@ class ClaimSignature(SuperBox):
         self.private_key = private_key
         self.certificate = certificate
 
+        content_boxes = self.generate_payload()
+
+        super().__init__(content_type=c2pa_content_types['claim_signature'], label='c2pa.signature', content_boxes=content_boxes)
+        
+    
+    def generate_payload(self):
         content_boxes = []
         if self.claim != None and self.private_key != None and self.certificate != None:
             content_box = ContentBox(box_type='cbor'.encode('utf-8').hex(), payload=self.create_signature())
             content_boxes.append(content_box)
-
+        
+        return content_boxes
+    
+    
+    def set_claim(self, claim):
+        self.claim = claim
+        
+        content_boxes = self.generate_payload()
         super().__init__(content_type=c2pa_content_types['claim_signature'], label='c2pa.signature', content_boxes=content_boxes)
 
 
