@@ -61,10 +61,15 @@ class JpgSegmentApp11Storage():
         self.l_box = app11_segment_box_length
         self.t_box = app11_segment_box_type
         self.payload = payload
+        self.serialized_length = 0
     
     
     def get_payload_length(self):
         return self.l_box - 4 - 4
+    
+    
+    def get_serialized_length(self):
+        return self.serialized_length
     
     
     def serialize(self):
@@ -93,6 +98,7 @@ class JpgSegmentApp11Storage():
         for app11_segment in app11_segments:
             serialized_storage_data += app11_segment.serialize()
         
+        self.serialized_length = len(serialized_storage_data)
         return serialized_storage_data
         
     

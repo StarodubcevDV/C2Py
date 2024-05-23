@@ -27,6 +27,17 @@ def get_assertion_content_type(assertion_type):
         return jumbf_content_types['codestream']
     else:
         return b''
+    
+
+def get_assertion_content_box_type(assertion_type):
+    if assertion_type == C2PA_AssertionTypes.creative_work:
+        return 'json'.encode('utf-8').hex()
+    elif assertion_type == C2PA_AssertionTypes.data_hash:
+        return 'cbor'.encode('utf-8').hex()
+    elif assertion_type == C2PA_AssertionTypes.thumbnail:
+        return 'codestream'.encode('utf-8').hex()   # figure out which content type should be
+    else:
+        return b''
 
 
 def get_assertion_label(assertion_type):
